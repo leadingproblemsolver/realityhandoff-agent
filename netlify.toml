@@ -1,0 +1,14 @@
+[build]
+  command = "mkdir -p dist && cp -r src/reality_handoff/static/* dist/"
+  publish = "dist"
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://YOUR-BACKEND-DOMAIN/api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
