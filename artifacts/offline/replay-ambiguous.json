@@ -1,0 +1,11 @@
+{
+  "evidence_count": 5,
+  "gate": {
+    "blocking_items": [
+      "Authoritative definition of 'revenue' is unresolved."
+    ],
+    "decision": "NEEDS_HUMAN",
+    "reason": "A semantic unknown blocks safe execution."
+  },
+  "mutations": 0
+}

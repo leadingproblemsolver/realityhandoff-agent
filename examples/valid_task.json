@@ -1,0 +1,5 @@
+{
+  "execution_id": "demo-orders-001",
+  "task": "Find the canonical customer orders asset. Inspect its context and lineage. If there is a safe documentation gap, append an evidence-backed continuity note, verify it, and leave a handoff for the next agent.",
+  "stage": "RECEIVED"
+}
