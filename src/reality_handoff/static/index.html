@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Reality Handoff Agent — proof-carrying DataHub actions that survive the agent session.">
+  <title>Reality Handoff Agent</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="badge">DATAHUB AGENT HACKATHON · AGENTS THAT DO REAL WORK</div>
+      <div class="hero-grid">
+        <div>
+          <h1>Proof-carrying actions that survive the agent session.</h1>
+          <p class="lede">Reality Handoff reads DataHub evidence, compiles an explicit reality model, gates unsafe work, asks for human approval, verifies the resulting catalog state, and persists continuity for a fresh agent.</p>
+        </div>
+        <aside class="system-card">
+          <div class="system-row"><span>DATAHUB</span><strong id="healthDatahub">checking</strong></div>
+          <div class="system-row"><span>SCOPE</span><strong id="healthScope">checking</strong></div>
+          <div class="system-row"><span>WRITES</span><strong id="healthWrites">checking</strong></div>
+          <div class="system-row"><span>APPROVAL</span><strong id="healthApproval">checking</strong></div>
+        </aside>
+      </div>
+    </header>
+
+    <section class="protocol" aria-label="Execution protocol">
+      <div><span>01</span> Evidence</div><b>→</b><div><span>02</span> Reality</div><b>→</b><div><span>03</span> Gate</div><b>→</b><div><span>04</span> Contract</div><b>→</b><div><span>05</span> Verify</div><b>→</b><div><span>06</span> Handoff</div>
+    </section>
+
+    <section class="workspace">
+      <div class="controls card">
+        <div class="section-head">
+          <div><div class="kicker">EXECUTION</div><h2>Give the agent one bounded task.</h2></div>
+          <div class="mode-switch" role="group" aria-label="Execution mode">
+            <button id="fixtureMode" class="mode active">Fixture proof</button>
+            <button id="liveMode" class="mode">Live DataHub</button>
+          </div>
+        </div>
+        <textarea id="task" spellcheck="false">Inspect the configured orders asset and its lineage. Append an evidence-backed Reality Handoff continuity note, verify it, and leave a durable handoff for the next agent.</textarea>
+        <div class="actions">
+          <button id="runButton" class="primary">Run Reality Handoff</button>
+          <button id="ambiguityButton" class="secondary">Run refusal control</button>
+          <button id="capabilityButton" class="ghost">MCP preflight</button>
+        </div>
+        <p class="micro" id="modeNote">Fixture proof exercises the same deterministic gate, contract, verification, and handoff semantics. It is explicitly not live DataHub evidence.</p>
+      </div>
+
+      <div class="timeline card">
+        <div class="section-head compact"><div><div class="kicker">STATE</div><h2>Execution protocol</h2></div><span id="runId" class="mono dim">not started</span></div>
+        <div id="timeline" class="timeline-list"></div>
+      </div>
+    </section>
+
+    <section class="evidence-grid">
+      <article class="card panel">
+        <div class="kicker">EVIDENCE</div><h3>What DataHub actually said</h3>
+        <div id="evidence" class="empty">Run a task to compile evidence.</div>
+      </article>
+      <article class="card panel">
+        <div class="kicker">REALITY + GATE</div><h3>Facts, unknowns, decision</h3>
+        <div id="reality" class="empty">No reality snapshot yet.</div>
+      </article>
+    </section>
+
+    <section id="contractSection" class="card contract hidden">
+      <div class="section-head">
+        <div><div class="kicker">EXECUTION CONTRACT</div><h2>Nothing mutates until this is approved.</h2></div>
+        <span id="gatePill" class="pill">READY</span>
+      </div>
+      <div id="contract"></div>
+      <div class="actions approval-actions">
+        <button id="approveButton" class="primary danger-safe">Approve bounded action</button>
+        <button id="rejectButton" class="secondary">Reject</button>
+      </div>
+    </section>
+
+    <section class="evidence-grid">
+      <article class="card panel">
+        <div class="kicker">VERIFICATION</div><h3>Action success is not proof.</h3>
+        <div id="verification" class="empty">Independent post-action re-read has not run.</div>
+      </article>
+      <article class="card panel">
+        <div class="kicker">CONTINUITY</div><h3>What the next agent inherits</h3>
+        <div id="handoff" class="empty">No durable handoff yet.</div>
+        <div class="recover-row">
+          <input id="recoverExecution" placeholder="execution id">
+          <button id="recoverButton" class="ghost">Start Fresh Agent</button>
+        </div>
+      </article>
+    </section>
+
+    <section class="card proof-strip">
+      <div><span class="dot"></span><strong>Claim boundary</strong><p>The live path proves a bounded DataHub catalog mutation and re-read. It does not claim downstream warehouse correctness.</p></div>
+      <div><span class="dot"></span><strong>Safety boundary</strong><p>Model output cannot authorize writes. The target, tool, operation, scope and approval are enforced outside the model.</p></div>
+      <div><span class="dot"></span><strong>Continuity boundary</strong><p>A fresh recovery call must read DataHub-backed state rather than frontend or conversation memory.</p></div>
+    </section>
+  </main>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

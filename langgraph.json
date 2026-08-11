@@ -1,0 +1,11 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "graphs": {
+    "reality_handoff": "./src/reality_handoff/graph.py:graph"
+  },
+  "env": ".env",
+  "http": {
+    "app": "./src/reality_handoff/webapp.py:app"
+  }
+}

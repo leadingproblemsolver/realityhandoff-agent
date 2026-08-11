@@ -1,0 +1,37 @@
+{
+  "description": "Canonical order-level transaction dataset.\n\n[tampered]\nEvidence-backed continuity note.",
+  "evidence_count": 5,
+  "gate": {
+    "blocking_items": [],
+    "decision": "READY",
+    "reason": "Facts resolve to retrieved evidence; no blocking unknowns or contradictions remain."
+  },
+  "mutations": 1,
+  "verification": {
+    "checks": [
+      {
+        "check": "marker_absent_before_or_idempotent",
+        "detail": "Marker was absent before mutation.",
+        "passed": true
+      },
+      {
+        "check": "target_urn_re_read",
+        "detail": "Post-action evidence resolves to the contract target.",
+        "passed": true
+      },
+      {
+        "check": "marker_present_after_reread",
+        "detail": "Expected marker missing after mutation.",
+        "passed": false
+      },
+      {
+        "check": "post_action_evidence",
+        "detail": "sha256:0e0b52111b72bf9b774cd3fdf17cd7443ec1100b5e70ab20b8f52583ba2ae707",
+        "passed": true
+      }
+    ],
+    "claim_boundary": "Verifies the intended DataHub catalog mutation by deterministic MCP re-read; it does not verify arbitrary downstream warehouse or business semantics.",
+    "post_action_evidence_id": "ev_006",
+    "verdict": "FAILED"
+  }
+}
