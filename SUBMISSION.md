@@ -23,6 +23,33 @@ Most agent systems can act, but have weak boundaries around what they actually k
 
 **evidence → bounded decision → verified action → durable continuity**.
 
+## Algorithmic approach
+Reality Handoff is deliberately a fail-closed state machine rather than a free-form agent loop:
+
+1. Discover the actual DataHub MCP capability surface.
+2. Read the exact target, schema, upstream lineage, and downstream lineage.
+3. Normalize every successful result into an immutable evidence reference with arguments, timestamp, target, digest, and bounded excerpt.
+4. Compile facts, inferences, unknowns, and contradictions; facts must resolve to evidence from the current execution.
+5. Run deterministic gates for evidence sufficiency, semantic ambiguity, exact-target certainty, mutation authorization, and required-tool availability.
+6. If READY, freeze the target, tool, append operation, evidence, acceptance tests, and stop conditions into an `ExecutionContract`.
+7. Pause for human approval.
+8. Execute only the allowlisted append-only mutation.
+9. Independently re-read DataHub and deterministically verify target identity plus the expected marker.
+10. Persist the handoff, verify it with another read, and require a fresh process to recover it.
+
+This confines probabilistic model behavior to interpretation and bounded text drafting; authorization and success criteria remain deterministic.
+
+## Core metrics / domains
+The project is optimized for five measurable judge-relevant domains:
+
+- **Safety / boundedness:** unauthorized mutation count is expected to remain zero on refusal/control paths; target and mutation are contract-scoped.
+- **Verifiability:** every successful catalog-mutation claim requires an independent post-write DataHub read; the model cannot self-attest success.
+- **Evidence integrity:** every fact must resolve to execution-local evidence IDs; evidence includes a SHA-256 digest of normalized results.
+- **Continuity:** handoff success is valid only after independent persistence verification and fresh-process recovery from DataHub-backed state.
+- **DataHub depth:** the protocol exercises exact entity context, schema, upstream lineage, downstream lineage, a bounded metadata action, and durable recovery.
+
+Packaging-time repository validation records **55/55 tests passed**, Python compile PASS, JavaScript syntax PASS, and secret scan PASS. Those are implementation/fixture metrics, not a substitute for live DataHub P0–P4 evidence.
+
 ## DataHub use
 
 - `search`
@@ -38,6 +65,19 @@ Python, LangGraph, LangChain MCP adapters, official DataHub MCP Server, Pydantic
 
 ## Reliability / safety
 The model cannot hold authorization authority, select arbitrary write tools, or declare verification success. DataHub metadata is untrusted evidence. Mutation exposure and mutation authorization are separate gates. The demo may be exact-URN scoped. Human approval is checkpointed with a LangGraph interrupt. MCP arguments bind against discovered schemas. Every successful catalog change requires an independent DataHub re-read, and every continuity claim requires an independent recovery read.
+
+## Live proof standard — P0 to P4
+Live DataHub success should be claimed only after all five gates pass on the supplied instance/target:
+
+- **P0:** required MCP reads are exposed; positive path also exposes `update_description`.
+- **P1:** the exact configured URN is returned and entity/schema/upstream/downstream context is readable.
+- **P2:** the ambiguous refusal task performs zero writes unless DataHub actually contains authoritative definition evidence.
+- **P3:** one reviewed append-only action is approved and an independent re-read returns `VERIFIED` or `VERIFIED_NOOP`.
+- **P4:** a fresh process recovers the prior handoff from DataHub-backed state without prior graph/browser/chat memory.
+
+If sanitized live artifacts are absent, the accurate claim is: **implementation validated offline; live P0–P4 pending on the supplied DataHub instance**.
+
+See `docs/JUDGE_GUIDE.md` for the judge scorecard, algorithmic rationale, claim boundaries, and evidence map. See `docs/LIVE_ACCEPTANCE.md` for exact P0–P4 commands and pass/fail gates.
 
 ## Demo arc
 1. Real DataHub evidence and target.
