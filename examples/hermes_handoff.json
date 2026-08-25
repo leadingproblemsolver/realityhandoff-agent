@@ -1,0 +1,11 @@
+{
+  "task_id": "demo-task-001",
+  "status": "completed",
+  "changed": "Implemented a bounded worker handoff and preserved the resulting receipt.",
+  "verified": [
+    "Focused regression passed",
+    "Result was independently re-read from durable state"
+  ],
+  "retry_unblock": "If verification fails, keep the task unsettled and retry from the preserved handoff state.",
+  "remaining_risk": "This envelope is a framework-neutral preflight, not a native Hermes plugin."
+}
