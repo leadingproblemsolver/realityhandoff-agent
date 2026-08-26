@@ -74,6 +74,8 @@ Verified locally before publication:
 - common aliases normalize to the same contract
 - empty verification evidence -> `BLOCK`
 
+Canonical merge additionally requires the repository Product Validation workflow on the PR merge result. Legacy Ruff debt is reported separately and does not replace deterministic tests or compilation as release gates.
+
 These tests establish deterministic contract behavior. They do **not** establish native Hermes compatibility, production adoption, reduced failure rate, or user demand.
 
 ## Next evidence event
