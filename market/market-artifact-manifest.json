@@ -1,0 +1,27 @@
+{
+  "repo": "leadingproblemsolver/realityhandoff-agent",
+  "artifact_id": "reality-handoff-datahub-proof-carrying-agent",
+  "artifact_url": "https://github.com/leadingproblemsolver/realityhandoff-agent",
+  "system": "Reality Handoff Agent",
+  "wedge": "proof-carrying DataHub actions with explicit approval, independent re-read verification, durable handoff, and fresh recovery",
+  "target_roles": [
+    "Data Platform Engineer",
+    "Data Governance Lead",
+    "AI Platform Engineer",
+    "Agent Infrastructure Engineer"
+  ],
+  "pain_signals": [
+    "agent sessions lose the evidence and execution state required for later reconstruction",
+    "model output can be mistaken for authorization or verification",
+    "metadata mutations lack a bounded execution contract and independent post-write read-back",
+    "fresh agents cannot reconstruct prior approved actions from durable system state"
+  ],
+  "proof_refs": [
+    "README.md — DataHub evidence to gate to execution contract to human approval to bounded write to re-read to handoff to recovery",
+    "docs/LIVE_ACCEPTANCE.md — P0 through P4 live acceptance sequence",
+    "docs/FRONTEND_ACCEPTANCE.md",
+    "artifacts/offline/ — deterministic fixture proof",
+    "README.md — documented 55/55 deterministic/unit/API/frontend-contract tests"
+  ],
+  "desired_consequence": "one real DataHub operator runs the P0-P4 acceptance sequence on an approved asset and produces a live read, approved bounded mutation, independent verification, and fresh-recovery receipt or an explicit failure that falsifies the path"
+}
