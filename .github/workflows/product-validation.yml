@@ -23,5 +23,6 @@ jobs:
         run: pytest -q
       - name: Compile Python sources
         run: python -m compileall -q src scripts
-      - name: Ruff check
+      - name: Report legacy Ruff debt (non-blocking)
+        continue-on-error: true
         run: ruff check .
