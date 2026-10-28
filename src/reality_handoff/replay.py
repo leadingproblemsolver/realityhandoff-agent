@@ -1,4 +1,5 @@
 from __future__ import annotations
+import json
 from dataclasses import dataclass, field
 from typing import Any
 from .contracts import build_contract
@@ -20,11 +21,12 @@ class ReplayCatalog:
         return {"results": [{"urn": self.urn, "name": "orders"}]}
 
     def get_entities(self):
-        return {
+        # Mirror the structured list returned by DataHub get_entities.
+        return [{
             "urn": self.urn,
-            "description": self.description,
+            "editableProperties": {"description": self.description},
             "owners": ["urn:li:corpuser:data-platform"],
-        }
+        }]
 
     def schema(self):
         return {
@@ -110,7 +112,7 @@ def run_replay(*, task: str, ambiguous: bool = False, tamper_after: bool = False
         evidence_ids=contract.evidence_dependencies,
         rationale="replay",
     )
-    before = str(catalog.get_entities())
+    before = json.dumps(catalog.get_entities())
     catalog.append_description(plan.description_append)
     if tamper_after:
         catalog.description = catalog.description.replace(marker, "[tampered]")
@@ -120,7 +122,7 @@ def run_replay(*, task: str, ambiguous: bool = False, tamper_after: bool = False
         marker=marker,
         target_urn=catalog.urn,
         before_text=before,
-        after_text=str(post_result),
+        after_text=json.dumps(post_result),
         post_evidence=post,
     )
     if verification.verdict != "FAILED":
